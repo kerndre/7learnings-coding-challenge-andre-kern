@@ -7,7 +7,7 @@ with the final evaluation focusing on the day corresponding to **today − 20 ye
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 - **Data Source:** NOAA GSOD (Global Surface Summary of the Day) via Google BigQuery  
 - **Stations:** 10 stations (IDs 725300–725330)  
@@ -16,7 +16,7 @@ with the final evaluation focusing on the day corresponding to **today − 20 ye
 
 ---
 
-## 🔧 Workflow
+## Workflow
 
 1. **Data Extraction (BigQuery)**  
    - Queried daily weather records for 2000–2005.  
@@ -26,8 +26,7 @@ with the final evaluation focusing on the day corresponding to **today − 20 ye
 2. **Cleaning & Preprocessing**  
    - Set missing `snow_depth` values to **0** (to keep sequence continuity).  
    - Dropped columns with excessive missingness (`min_temperature`, `mean_station_pressure`, `max_gust_wind_speed`).  
-   - Imputed small gaps in continuous features (interpolation / median).  
-   - Filled `total_precipitation` NaNs with **0** (interpreted as no rainfall/snowfall).  
+   - Imputed small gaps in continuous features (median).  
 
 3. **Feature Engineering**  
    - Cyclical encoding of **month** (`sin`, `cos`) for seasonality.  
@@ -51,7 +50,7 @@ with the final evaluation focusing on the day corresponding to **today − 20 ye
 
 ---
 
-## 📊 Results
+## Results
 
 ### Validation (2004)
 - **Logistic Regression:** Recall ~72%, Precision ~10%, AUC ~0.62.  
@@ -70,37 +69,9 @@ with the final evaluation focusing on the day corresponding to **today − 20 ye
 
 ---
 
-## ⚠️ Limitations & Next Steps
+## Limitations & Next Steps
 
 - Distinguish *“true zero snow depth”* vs. *“not measured”* with an indicator column.  
 - Add rolling/lagged weather features (e.g., precipitation in last 3 days).  
 - Test stronger models (Random Forest, Gradient Boosted Trees).  
 - Evaluate multiple “today − 20 years” dates (sliding window) for robustness.  
-
----
-
-## 🛠️ Setup & Run
-
-Clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/kerndre/7learnings-coding-challenge-andre-kern.git
-cd 7learnings-coding-challenge-andre-kern
-pip install -r requirements.txt
-````
-
-Run the notebook in **Google Colab** (recommended) or locally with BigQuery access.
-
-* Authenticate with GCP:
-
-  ```bash
-  gcloud auth application-default login
-  ```
-* Execute all cells in `Kopie von Coding Challenge.ipynb`.
-
----
-
-## 🙏 Acknowledgments
-
-* Data source: [NOAA GSOD](https://console.cloud.google.com/marketplace/details/noaa-public/gsod) via Google BigQuery
-* Challenge provided by **7Learnings**
