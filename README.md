@@ -1,7 +1,7 @@
 # 7Learnings Data Scientist Coding Challenge  
 *Author: André Kern*  
 
-This repository contains my solution to the **7Learnings Data Scientist coding challenge**.  
+This repository contains my solution to the [**7Learnings Data Scientist coding challenge**](https://github.com/7Learnings/code-challenges/tree/main/datascience).
 The task is to predict whether it will snow *tomorrow* for selected weather stations,  
 with the final evaluation focusing on the day corresponding to **today − 20 years**.
 
